@@ -1,5 +1,5 @@
 import numpy as np
-from rugplot import *
+from rugplot import CircleMarker, Scatter
 
 N = 50
 x = np.random.rand(N)
