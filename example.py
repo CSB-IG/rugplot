@@ -1,6 +1,6 @@
 import numpy as np
-from rugplot import CircleMarker, Scatter
 import svgwrite, random
+from rugplot import CircleMarker, Scatter
 
 N = 12
 w = np.random.rand(N)
