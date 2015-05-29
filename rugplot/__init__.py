@@ -10,16 +10,41 @@ class Rug:
 
 
 class Scatter:
-    def __init__(self, markers, insert, size, **extra):
-        self.dwg     = svgwrite.Drawing()
-        self.markers = markers
-        self.dwg.add(self.dwg.rect(insert=insert, size=size, **extra))
+    def __init__(self, x, y, markers, insert, size):
 
-    def draw(self):
-        for m in self.markers:
-            self.dwg.add(m.getDwg())            
+        assert len(x) == len(y) == len(markers)
+
+        self.x = x
+        self.y = y
+        self.markers = markers
+
+        self.insert = insert
+        self.size   = size
+        self.dwg    = svgwrite.Drawing()        
+
+
+    def drawBorder(self, **extra):
+        # draw enclosing rectangle
+        self.dwg.add(self.dwg.rect(insert=self.insert, size=self.size, **extra))
 
         
+    def drawMarkers(self):
+        for i in range(len(self.markers)):
+            m   = self.markers[i]
+            # set coords for mark
+            m.x = ((self.x[i] / self.x.max()) * self.size[0]) + self.insert[0]
+            m.y = ((self.y[i] / self.y.max()) * self.size[1]) + self.insert[1]
+            # add it
+            self.dwg.add(m.getDwg())            
+
+
+    def drawDotDash(self, which):
+        for m in self.markers:
+            if 'n' in which:
+                self.dwg.add(self.dwg.line((m.x, self.insert[1]), (m.x, self.insert[1]+10), stroke="black", stroke_width="1"))
+                
+
+
 
 
 class CircleMarker:
@@ -36,4 +61,5 @@ class CircleMarker:
                                      r=self.r, **self.extra))
         
     def getDwg(self):
+        self.draw()
         return self.dwg
