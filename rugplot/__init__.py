@@ -17,9 +17,8 @@ class Scatter:
         self.x = x
         self.y = y
         self.markers = markers
-
-        self.insert = insert
-        self.size   = size
+        self.insert  = insert
+        self.size    = size
         self.dwg    = svgwrite.Drawing()        
 
 
@@ -33,7 +32,7 @@ class Scatter:
             m   = self.markers[i]
             # set coords for mark
             m.x = ((self.x[i] / self.x.max()) * self.size[0]) + self.insert[0]
-            m.y = ((self.y[i] / self.y.max()) * self.size[1]) + self.insert[1]
+            m.y = ((self.y[i] / self.y.max()) * self.size[1]) + self.insert[1] 
             # add it
             self.dwg.add(m.getDwg())            
 
