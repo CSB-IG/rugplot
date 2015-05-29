@@ -38,10 +38,23 @@ class Scatter:
             self.dwg.add(m.getDwg())            
 
 
-    def drawDotDash(self, which):
+    def drawDotDash(self, which, dash_height=20, **extra):
         for m in self.markers:
             if 'n' in which:
-                self.dwg.add(self.dwg.line((m.x, self.insert[1]), (m.x, self.insert[1]+10), stroke="black", stroke_width="1"))
+                self.dwg.add(self.dwg.line((m.x, self.insert[1]-dash_height),
+                                           (m.x, self.insert[1]), **extra))
+
+            if 's' in which:
+                self.dwg.add(self.dwg.line((m.x, self.insert[1] + self.size[1]),
+                                           (m.x, self.insert[1] + self.size[1] + dash_height), **extra))
+
+            if 'e' in which:
+                self.dwg.add(self.dwg.line((self.insert[0] + self.size[0], m.y),
+                                           (self.insert[0] + self.size[0] + dash_height, m.y), **extra))
+
+            if 'w' in which:
+                self.dwg.add(self.dwg.line((self.insert[0] - dash_height, m.y),
+                                           (self.insert[0], m.y), **extra))
                 
 
 
