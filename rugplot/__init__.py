@@ -3,9 +3,22 @@ from svgwrite import cm, mm
 
 
 class Rug:
-    def __init__(self):
-        pass    
+    def __init__(self, filename):
+        self.dwg      = svgwrite.Drawing(filename)
+        self.scatters = []
 
+
+    def connect( scatter0, scatter1, marker, **extra):
+        m0_x = scatter0.x[marker] 
+        m0_y = scatter0.y[marker] 
+
+        m1_x = scatter1.x[marker] 
+        m1_y = scatter1.y[marker] 
+
+        self.dwg.add(self.dwg.line((m0_x, m0_y),
+                                   (m1_x, m1_y), **extra))
+        
+            
 
 
 
