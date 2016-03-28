@@ -1,7 +1,13 @@
-# rugplot
+RugPlot
+=======
 
-Connected bivariate scatter plots, in a rug. For now one must tile the
-scatters, future development may include automatic placement.
+Connected bivariate scatter plots, in a rug.
+
+.. image:: https://github.com/CSB-IG/rugplot/raw/master/rugplot.png
+
+
+A short example
+---------------
 
 ```python
     import numpy as np
@@ -17,12 +23,16 @@ scatters, future development may include automatic placement.
     markers = []
     for i in range(N):
         markers.append(CircleMarker(x=x[i], y=y[i], r=2.5,
-                                    fill=random.choice(['black', 'purple', 'grey','blue', 'green', 'blue', 'orange', 'red', 'brown'])))
+                                    fill=random.choice(['black', 'purple',
+                                                        'grey', 'blue',
+                                                        'green', 'blue',
+                                                        'orange',
+                                                        'red', 'brown'])))
     
-    s = Scatter(x, y, markers, insert=(100,30), size=(200,200))
-    s.drawBorder(stroke='grey', fill='white', stroke_width=0.4)
-    s.drawMarkers()
-    s.drawDotDash(['e','s'], dash_height=10, stroke="grey", stroke_width=0.4)
+    s0 = Scatter(x, y, markers, insert=(100,30), size=(200,200))
+    s0.drawBorder(stroke='grey', fill='white', stroke_width=0.4)
+    s0.drawMarkers()
+    s0.drawDotDash(['e','s'], dash_height=10, stroke="grey", stroke_width=0.4)
     
     
     s1 = Scatter(w, y, markers, insert=(320,30), size=(350,200))
@@ -38,10 +48,10 @@ scatters, future development may include automatic placement.
     
     
     rug = svgwrite.Drawing('example.svg')
-    rug.add(s.dwg)
+    rug.add(s0.dwg)
     rug.add(s1.dwg)
     rug.add(s2.dwg)
     rug.save()
 ```
 
-<img src="rugplot.png">
+
