@@ -8,8 +8,8 @@ Connected bivariate scatter plots, in a rug.
 
 A short example
 ---------------
+.. code:: python
 
-```python
     import numpy as np
     import svgwrite, random
     from rugplot import CircleMarker, Scatter
