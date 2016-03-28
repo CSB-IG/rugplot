@@ -3,6 +3,7 @@
 Connected bivariate scatter plots, in a rug. For now one must tile the
 scatters, future development may include automatic placement.
 
+```python
     import numpy as np
     import svgwrite, random
     from rugplot import CircleMarker, Scatter
@@ -41,6 +42,6 @@ scatters, future development may include automatic placement.
     rug.add(s1.dwg)
     rug.add(s2.dwg)
     rug.save()
-
+```
 
 <img src="rugplot.png">
